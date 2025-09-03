@@ -1,0 +1,547 @@
+/* LAYOUT DO BANNER */
+.gb-banner {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 92vh;
+  display: grid;
+  place-items: center;
+  background: transparent;
+}
+
+.gb-scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.gb-scene-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ====== NUVENS JS ====== */
+.gb-cloud-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* cada nuvem é um "container" que cruza a tela da esquerda pra direita */
+.cloud-js {
+  position: absolute;
+  left: -28vw;
+  /* começa fora da tela */
+  width: 220px;
+  height: 70px;
+  /* tamanho base (escalado via transform) */
+  animation-name: cloud-fly;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  opacity: .95;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, .05));
+}
+
+/* puffs desenham a nuvem em 3 "bolhas" */
+.cloud-js .puff {
+  position: absolute;
+  background: #fff;
+  border-radius: 999px;
+}
+
+.cloud-js .p1 {
+  width: 120px;
+  height: 56px;
+  left: 30px;
+  top: 10px;
+}
+
+.cloud-js .p2 {
+  width: 86px;
+  height: 42px;
+  left: 90px;
+  top: 0px;
+}
+
+.cloud-js .p3 {
+  width: 76px;
+  height: 36px;
+  left: 8px;
+  top: 18px;
+}
+
+@keyframes cloud-fly {
+  from {
+    transform: translateX(0) scale(var(--scale, 1));
+  }
+
+  to {
+    transform: translateX(160vw) scale(var(--scale, 1));
+  }
+}
+
+/* ====== CARD DE BOAS-VINDAS ====== */
+.gb-hero-card {
+  position: relative;
+  z-index: 2;
+  background: var(--card);
+  color: var(--text);
+  max-width: 920px;
+  width: calc(100% - 40px);
+  border-radius: 18px;
+  padding: 22px 26px;
+  text-align: center;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .18);
+}
+
+.gb-hero-card h1 {
+  margin: 0 0 8px;
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 700;
+}
+
+.gb-hero-card p {
+  margin: 0 0 14px;
+  font-size: clamp(14px, 1.8vw, 16px);
+}
+
+.gb-cta {
+  display: inline-block;
+  text-decoration: none;
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-weight: 800;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .18);
+}
+
+.gb-cta:hover {
+  filter: brightness(1.06);
+}
+
+@media (max-width:900px) {
+  .gb-banner {
+    min-height: 82vh;
+  }
+
+  .cloud-js {
+    width: 180px;
+    height: 60px;
+  }
+}
+
+/* ====== GREEN + BANDEIRA ====== */
+.gb-flag {
+  transform-origin: 1040px 710px;
+  animation: mastSway 7s cubic-bezier(.42, 0, .2, 1) infinite;
+}
+
+@keyframes mastSway {
+  0% {
+    transform: rotate(0deg)
+  }
+
+  22% {
+    transform: rotate(-.35deg)
+  }
+
+  50% {
+    transform: rotate(.20deg)
+  }
+
+  78% {
+    transform: rotate(-.15deg)
+  }
+
+  100% {
+    transform: rotate(0deg)
+  }
+}
+
+/* pano ancorado no mastro – sem deslocar */
+.cloth {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: clothLead 2.6s ease-in-out infinite;
+}
+
+@keyframes clothLead {
+  0%, 100% {
+    transform: skewX(0deg)
+  }
+
+  38% {
+    transform: skewX(-3deg)
+  }
+
+  70% {
+    transform: skewX(2deg)
+  }
+}
+
+.hillA, .hillB {
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.hillA {
+  transform: translateY(calc(var(--parallax, 0) * 0.02px));
+}
+
+.hillB {
+  transform: translateY(calc(var(--parallax, 0) * 0.04px));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hillA, .hillB {
+    transform: none !important;
+  }
+}
+
+/* fade que funde o gramado no branco da seção seguinte */
+.gb-bottom-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 140px;
+  z-index: 2;
+  /* abaixo da onda, acima do gramado */
+  pointer-events: none;
+  background: linear-gradient(to bottom,
+      rgba(246, 251, 248, 0) 0%,
+      #f6fbf8 75%);
+}
+
+/* onda branca colada na borda inferior do banner */
+.gb-bottom-wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 160px;
+  z-index: 3;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .10));
+}
+
+.gb-bottom-wave svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* “cabeça para baixo” */
+.gb-bottom-wave--flip {
+  transform: scaleY(-1);
+  transform-origin: center bottom;
+}
+
+section#sobre {
+  background: var(--branco);
+}
+
+
+/* ================== PALETA POR CLIMA/ESTAÇÃO ================== */
+/* Defaults (dia) aplicados na raiz da seção */
+.gb-banner {
+  --sky-top: #9fd7ff;
+  --sky-mid: #dff3ff;
+  --sky-bottom: #f5fbf7;
+
+  --hillA-1: #7bc47f;
+  --hillA-2: #58a86b;
+  --hillB-1: #6fbf77;
+  --hillB-2: #4f9d63;
+
+  --cloud-color: #ffffff;
+  --cloud-shadow: rgba(0, 0, 0, .12);
+  --cloud-tint-filter: none;
+
+  transition: background .3s ease, filter .3s ease;
+}
+
+/* CHUVA */
+.wx-chuva {
+  --sky-top: #8aa7bf;
+  --sky-mid: #b6c7d4;
+  --sky-bottom: #e4ebf1;
+
+  --hillA-1: #5c9968;
+  --hillA-2: #4c8058;
+  --hillB-1: #548e61;
+  --hillB-2: #426f4d;
+
+  --cloud-color: #dfe6ee;
+  --cloud-shadow: rgba(0, 0, 0, .22);
+  --cloud-tint-filter: brightness(.92) saturate(.9);
+}
+
+/* VENTO (outono) */
+.wx-vento {
+  --sky-top: #a8d1ff;
+  --sky-mid: #e7f1ff;
+  --sky-bottom: #fbfbf8;
+
+  --hillA-1: #90a65e;
+  --hillA-2: #7f8f4f;
+  --hillB-1: #879c59;
+  --hillB-2: #70844a;
+
+  --cloud-color: #ffffff;
+  --cloud-shadow: rgba(0, 0, 0, .14);
+  --cloud-tint-filter: none;
+}
+
+/* NEVE (inverno) */
+.wx-neve {
+  --sky-top: #9fb9d7;
+  --sky-mid: #dbe8f3;
+  --sky-bottom: #f3f8fc;
+
+  --hillA-1: #a9c2ad;
+  --hillA-2: #8fb19a;
+  --hillB-1: #9ebca2;
+  --hillB-2: #86a68d;
+
+  --cloud-color: #f3f6fb;
+  --cloud-shadow: rgba(0, 0, 0, .10);
+  --cloud-tint-filter: brightness(1.02) saturate(.9);
+}
+
+/* NOITE */
+.wx-noite, .wx-noite .gb-scene rect:first-child {
+  filter: none;
+}
+
+/* compat */
+
+.wx-noite .gb-scene rect:first-child {
+  /* no-op only for compat */
+}
+
+.wx-noite .gb-scene rect:first-child {
+  filter: none;
+}
+
+/* keep clean */
+
+.wx-noite, .wx-night {
+  --sky-top: #1d2343;
+  --sky-mid: #242a4e;
+  --sky-bottom: #2d3157;
+
+  --hillA-1: #3c455f;
+  --hillA-2: #2e3650;
+  --hillB-1: #353e58;
+  --hillB-2: #2a3149;
+
+  --cloud-color: #d8def0;
+  --cloud-shadow: rgba(0, 0, 0, .18);
+  --cloud-tint-filter: brightness(.9) saturate(.85);
+}
+
+/* ================== NUVENS ================== */
+.gb-cloud-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.cloud-js {
+  position: absolute;
+  left: -20%;
+  width: 220px;
+  height: 90px;
+  animation: cloudMove linear infinite;
+  will-change: transform;
+  filter: var(--cloud-tint-filter);
+}
+
+@keyframes cloudMove {
+  to {
+    transform: translateX(140vw);
+  }
+}
+
+.cloud-js .puff {
+  position: absolute;
+  background: var(--cloud-color);
+  border-radius: 999px;
+  box-shadow: 0 8px 16px var(--cloud-shadow);
+}
+
+.cloud-js .p1 {
+  left: 40px;
+  top: 20px;
+  width: 120px;
+  height: 60px;
+}
+
+.cloud-js .p2 {
+  left: 90px;
+  top: 10px;
+  width: 90px;
+  height: 50px;
+}
+
+.cloud-js .p3 {
+  left: 0px;
+  top: 30px;
+  width: 100px;
+  height: 54px;
+}
+
+/* variações rápidas por “tint” (apenas caso queira diferenciar ainda mais) */
+.cloud-dark .puff {
+  background: #d7dee8;
+}
+
+.cloud-cold .puff {
+  background: #eef3f9;
+}
+
+.cloud-night .puff {
+  background: #d6dbef;
+}
+
+/* ================== FENÔMENOS ================== */
+/* CHUVA */
+.wx-rain, .wx-snow, .wx-wind, .wx-night {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* gotas */
+.drop {
+  position: absolute;
+  top: var(--y, -8vh);
+  left: var(--x, 50%);
+  width: 2px;
+  height: 70px;
+  border-radius: 2px;
+  background: linear-gradient(#7ec8ff, rgba(126, 200, 255, 0));
+  filter: drop-shadow(0 2px 1px rgba(0, 0, 0, .05));
+  animation: rainFall 1.1s linear infinite;
+}
+
+@keyframes rainFall {
+  to {
+    transform: translateY(120vh);
+  }
+}
+
+/* flocos */
+.flake {
+  position: absolute;
+  top: var(--y, -10vh);
+  left: var(--x, 50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(#fff, rgba(255, 255, 255, .6));
+  box-shadow: 0 0 8px rgba(255, 255, 255, .7);
+  animation: snowFall 6.5s linear infinite, snowDrift 3.4s ease-in-out infinite alternate;
+}
+
+@keyframes snowFall {
+  to {
+    transform: translateY(120vh);
+  }
+}
+
+@keyframes snowDrift {
+  to {
+    transform: translateX(16px);
+  }
+}
+
+/* rajadas de vento */
+.gust {
+  position: absolute;
+  top: var(--y, 40%);
+  left: -20%;
+  width: 140px;
+  height: 12px;
+  border-radius: 12px;
+  background: radial-gradient(ellipse at left, rgba(255, 255, 255, .55), rgba(255, 255, 255, 0));
+  filter: blur(1px);
+  animation: gust 3.2s ease-in-out infinite;
+}
+
+@keyframes gust {
+  to {
+    transform: translateX(140vw);
+  }
+}
+
+/* NOITE: lua + estrelas */
+.wx-night .moon {
+  position: absolute;
+  right: 10%;
+  top: 12%;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff 0%, #f2f5ff 60%, #dfe6ff 100%);
+  box-shadow: 0 0 28px rgba(255, 255, 255, .45);
+}
+
+.wx-night .stars span {
+  position: absolute;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: .85;
+  animation: twinkle 2.4s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  50% {
+    opacity: .2;
+    transform: scale(.8);
+  }
+}
+
+/* ================== CARD & CONTROLES ================== */
+.wx-controls-main {
+  margin-top: 14px;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.wx-controls-main button {
+  background: #f2f4ff;
+  border: 0;
+  padding: 8px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.wx-controls-main button.is-active {
+  background: #fff;
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, .35) inset;
+  color: var(--accent, #5b55f7);
+}
+
+/* ================== A11Y / PERF ================== */
+@media (prefers-reduced-motion: reduce) {
+  .cloud-js, .drop, .flake, .gust, .wx-night .stars span {
+    animation: none !important;
+  }
+}

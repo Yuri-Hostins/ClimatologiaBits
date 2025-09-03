@@ -1,0 +1,177 @@
+/* ======= PALETA GLOBAL ======= */
+/* roxos “brand” */
+:root{
+  /* tokens semânticos */
+  --brand-300: #b7a5ff;
+  --brand-400: #a78bfa;     /* já usado na navbar */
+  --brand-500: #8b5cf6;     /* roxo principal */
+  --brand-600: #6d4aff;     /* CTA/hover */
+  --brand-700: #5638d9;
+
+  --page-ink:   #0e1116;    /* texto primário genérico */
+  --page-muted: #5b6772;    /* texto secundário */
+  --link:       var(--brand-600);
+
+  /* superfícies base (LIGHT como default) */
+  --page-bg: #ffffff;
+  --surface-1: #ffffff;
+  --surface-2: #f6f4ff;     /* leve lilás para faixas/boxes */
+  --surface-3: #eef2ff;
+
+  /* bordas/aneis */
+  --ring: rgba(139, 92, 246, .45);
+  --hairline: rgba(16, 18, 27, .08);
+
+  /* --------- componentes já existentes --------- */
+  /* Navbar */
+  --cb-bg: rgba(73, 35, 105, .86);
+  --cb-bg-solid: #492369;
+  --cb-bg-strong: #32174d;
+  --cb-accent: var(--brand-500);
+  --cb-accent-2: var(--brand-400);
+   --accent: var(--brand-600);
+  --cb-ink: #1a1027;
+  --cb-card: #ffffff;
+  --cb-ring: var(--ring);
+
+  /* Footer */
+  --footer-ink: #eef4ff;
+  --footer-bg-dark: #2e2542;
+  --footer-bg-dark-2: #261d3b;
+  --footer-circle: rgba(255,255,255,.10);
+  --footer-ring: rgba(255,255,255,.22);
+
+  /* Conteúdos (cards carrossel) */
+  /* conteudos */
+  --ct-bg: #f2f4f8;
+  --ct-card: #fff;
+  --ct-ink: #101418;
+  --ct-ink-2: #3c4048;
+  --ct-ink-3: #6b7280;
+  --ct-pink: #6e56cf;
+
+  --fade-w: 150px;
+  /* largura das fades laterais */
+  --track-pad-x: calc(var(--fade-w) + 24px);
+  /* acolchoamento lateral da trilha */
+  --gap: 28px;
+  /* espaço entre cards */
+  --cardW: clamp(300px, 34vw, 360px);
+  /* largura “fixa” do card */
+
+  /* Contato */
+  --violet: var(--brand-500);
+  --violet-2: var(--brand-400);
+  --ink: #0f1221;
+  --ink-2:#4b5260;
+  --bg:#f6fafc;
+  --card:#fff;
+
+  /* cores globais antigas (mapeadas) */
+  --bg: var(--page-bg);
+  --card: var(--surface-1);
+  --text: var(--page-ink);
+  --muted: var(--page-muted);
+  --color-link: var(--link);
+  --sobre-bg: var(--surface-2);
+}
+
+/* ======= TEMA CLARO ======= */
+:root[data-theme="light"]{
+  color-scheme: light;
+
+  --page-bg: #ffffff;
+  --surface-1: #ffffff;
+  --surface-2: #f6f4ff;
+  --surface-3: #eef2ff;
+
+  --page-ink: #0f172a;
+  --page-muted: #5b6772;
+  --link: var(--brand-600);
+
+  /* Navbar (roxos claros) */
+  --cb-bg: rgba(73, 35, 105, .86);
+  --cb-bg-solid: #492369;
+  --cb-bg-strong: #32174d;
+  --cb-accent: var(--brand-500);
+  --cb-accent-2: var(--brand-400);
+
+  /* Conteúdos */
+  --ct-bg: #f3f4fb;
+  --ct-card: #ffffff;
+  --ct-ink: #101418;
+  --ct-ink-2: #3c4048;
+  --ct-ink-3: #6b7280;
+
+  /* Contato */
+  --bg:#f7f9ff;
+  --card:#ffffff;
+}
+
+/* ======= TEMA ESCURO ======= */
+/* roxo + preto, com contrastes mais altos */
+:root[data-theme="dark"]{
+  color-scheme: dark;
+
+  --page-bg: #0f0b15;        /* preto arroxeado */
+  --surface-1: #161124;      /* cards / blocos */
+  --surface-2: #1b152c;      /* faixas */
+  --surface-3: #221a35;
+
+  --page-ink:  #e9ecff;
+  --page-muted:#aab1c0;
+  --link:      #c8b5ff;
+
+  /* Navbar (a mesma vibe do banner noturno) */
+  --cb-bg: rgba(18,13,28,.86);
+  --cb-bg-solid: #1a1227;
+  --cb-bg-strong: #120c1b;
+  --cb-accent: #9b87f5;
+  --cb-accent-2: #c4b7ff;
+
+  /* Conteúdos */
+  --ct-bg: #171425;
+  --ct-card: #1f1a33;
+  --ct-ink: #eef1ff;
+  --ct-ink-2: #c8ccea;
+  --ct-ink-3: #a2a8c9;
+
+  
+
+  /* Contato */
+  --bg:#0f0b15;
+  --card:#1a1429;
+  
+
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--text);
+  line-height: 1.45;
+}
+
+/* utilitário de container padrão do site */
+.gb-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.gb-section {
+  background: #f6fbf8;
+  padding: 40px 0;
+}
+
+.gb-section-alt {
+  background: #ffffff;
+}

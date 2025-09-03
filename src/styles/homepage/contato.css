@@ -1,0 +1,482 @@
+/* containers principais (painel esquerdo + cartão do formulário) */
+.contato,
+#contato,
+.contact {
+  --ctc-bg: var(--bg);
+  --ctc-card: var(--card);
+  --ctc-ink: var(--ink);
+  --ctc-ink-2: var(--ink-2);
+  --ctc-accent: var(--violet, var(--brand-600));
+  --ctc-accent-2: var(--violet-2, var(--brand-500));
+  --ctc-hairline: var(--hairline);
+}
+
+.contato,
+#contato,
+.contact {
+  background: var(--ctc-bg);
+}
+
+/* Painel informativo (lado esquerdo) */
+.contato .ct-info,
+#contato .ct-info,
+.contact .ct-info {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--ctc-accent) 18%, #0000) 0%, color-mix(in srgb, var(--ctc-accent-2) 48%, #0000) 100%);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .08);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, .35),
+    0 2px 0 rgba(255, 255, 255, .06) inset;
+}
+
+/* Cartão do formulário (lado direito) */
+.contato .ct-formCard,
+#contato .ct-formCard,
+.contact .ct-formCard {
+  background: var(--ctc-card);
+  color: var(--ctc-ink);
+  border: 1px solid var(--ctc-hairline);
+}
+
+/* Inputs / textarea / select */
+.contato .ct-input,
+.contato .ct-textarea,
+.contato .ct-select,
+#contato .ct-input,
+#contato .ct-textarea,
+#contato .ct-select,
+.contact .ct-input,
+.contact .ct-textarea,
+.contact .ct-select {
+  background: var(--ctc-card);
+  color: var(--ctc-ink);
+  border: 1.5px solid var(--ctc-hairline);
+}
+
+.contato .ct-input::placeholder,
+.contato .ct-textarea::placeholder,
+#contato .ct-input::placeholder,
+#contato .ct-textarea::placeholder,
+.contact .ct-input::placeholder,
+.contact .ct-textarea::placeholder {
+  color: color-mix(in srgb, var(--ctc-ink-2) 72%, transparent);
+}
+
+/* Focus ring consistente com o roxo da marca */
+.contato .ct-input:focus,
+.contato .ct-textarea:focus,
+.contato .ct-select:focus,
+#contato .ct-input:focus,
+#contato .ct-textarea:focus,
+#contato .ct-select:focus,
+.contact .ct-input:focus,
+.contact .ct-textarea:focus,
+.contact .ct-select:focus {
+  outline: 2px solid var(--ctc-accent-2);
+  outline-offset: 3px;
+  border-color: color-mix(in srgb, var(--ctc-accent) 55%, var(--ctc-hairline));
+}
+
+/* Select dropdown (lista) */
+.contato .ct-select-menu,
+#contato .ct-select-menu,
+.contact .ct-select-menu {
+  background: var(--ctc-card);
+  color: var(--ctc-ink);
+  border: 1px solid var(--ctc-hairline);
+}
+
+.contato .ct-select-menu .option:hover,
+#contato .ct-select-menu .option:hover,
+.contact .ct-select-menu .option:hover {
+  background: color-mix(in srgb, var(--ctc-accent) 14%, transparent);
+}
+
+/* Radio/checkbox estilo “pill” */
+.contato .ct-radio input:checked+.dot,
+#contato .ct-radio input:checked+.dot,
+.contact .ct-radio input:checked+.dot {
+  background: var(--ctc-accent);
+  box-shadow: 0 0 0 2px #fff inset, 0 0 0 4px color-mix(in srgb, var(--ctc-accent) 35%, transparent);
+}
+
+/* Botão Enviar */
+.contato .ct-send,
+#contato .ct-send,
+.contact .ct-send {
+  background: var(--brand-600);
+  color: #fff;
+}
+
+.contato .ct-send:hover,
+#contato .ct-send:hover,
+.contact .ct-send:hover {
+  background: var(--brand-500);
+}
+
+.cbc-section {
+  padding: 28px 16px 56px;
+  background:
+    radial-gradient(1200px 460px at 60% -220px, #cfeaff 0%, #e8f4ff 45%, #f7fbff 70%, transparent 71%) no-repeat,
+    linear-gradient(180deg, #f8fbff 0%, #eef4f8 100%);
+  overflow: clip;
+}
+
+.cbc-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  gap: 22px;
+}
+
+/* bloco esquerdo (foto + card) */
+.cbc-left {
+  position: relative;
+  min-height: 520px;
+  border-radius: 18px;
+  background: #e8eef7 center/cover no-repeat;
+  box-shadow: 0 18px 48px rgba(12, 22, 33, .12);
+  overflow: hidden;
+}
+
+.cbc-left::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(38, 22, 80, .45), rgba(38, 22, 80, .55));
+}
+
+.cbc-left-inner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px;
+}
+
+.cbc-left-title {
+  color: #fff;
+  margin: 0;
+  font-size: clamp(22px, 3.2vw, 30px);
+  font-weight: 800;
+}
+
+.cbc-left-title span {
+  opacity: .9;
+  font-weight: 600;
+  display: block;
+}
+
+.cbc-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(12, 22, 33, .22);
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.cbc-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #1f2937;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(12, 22, 33, .06);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.cbc-row:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(12, 22, 33, .12);
+}
+
+.cbc-row svg {
+  width: 18px;
+  height: 18px;
+  fill: #6b6ee8;
+}
+
+/* direita – form */
+.cbc-form-wrap {
+  background: var(--card);
+  border: 1px solid rgba(12, 22, 33, .06);
+  border-radius: 18px;
+  box-shadow: 0 16px 44px rgba(12, 22, 33, .12);
+  padding: 18px;
+}
+
+.cbc-title {
+  margin: 0 0 10px;
+  color: var(--ink);
+  font-size: clamp(22px, 3.5vw, 32px);
+  font-weight: 800;
+  letter-spacing: -.02em;
+}
+
+.cbc-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.cbc-full {
+  grid-column: 1 / -1;
+}
+
+.cbc-inline {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.cbc-inline legend {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.cbc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cbc-field label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.cbc-field input[type="text"],
+.cbc-field input[type="email"],
+.cbc-field select,
+.cbc-field textarea {
+  border: 1.5px solid rgba(12, 22, 33, .12);
+  background: #fff;
+  color: var(--ink);
+  border-radius: 999px;
+  /* “pill” */
+  padding: 12px 14px;
+  font: inherit;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.cbc-field textarea {
+  border-radius: 16px;
+  resize: vertical;
+}
+
+.cbc-field input:focus,
+.cbc-field select:focus,
+.cbc-field textarea:focus {
+  outline: 2px solid color-mix(in srgb, var(--violet) 30%, transparent);
+  outline-offset: 1px;
+  border-color: var(--violet);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--violet) 22%, transparent);
+}
+
+/* radios “chip” */
+.cbc-radio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(12, 22, 33, .12);
+  cursor: pointer;
+}
+
+.cbc-radio input {
+  accent-color: var(--violet);
+}
+
+/* ações */
+.cbc-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cbc-btn {
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 18px;
+  cursor: pointer;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(180deg, var(--violet), var(--violet-2));
+  box-shadow: 0 14px 36px color-mix(in srgb, var(--violet) 60% / 35%);
+  transition: transform .15s ease, filter .15s ease;
+}
+
+.cbc-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+}
+
+.cbc-hint {
+  color: var(--ink-2);
+  font-size: 12px;
+}
+
+/* honeypot invisível */
+.cbc-hp {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* responsivo */
+@media (max-width: 980px) {
+  .cbc-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .cbc-left {
+    min-height: 360px;
+  }
+}
+
+/* ===== Custom Select (cbc-sel) ===== */
+.cbc-sel {
+  position: relative;
+}
+
+.cbc-sel-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* botão “pill” */
+.cbc-sel-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border: 1.5px solid rgba(12, 22, 33, .12);
+  background: #fff;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 12px 14px;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.cbc-sel-btn:focus {
+  outline: 2px solid color-mix(in srgb, var(--violet) 30%, transparent);
+  outline-offset: 1px;
+  border-color: var(--violet);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--violet) 22%, transparent);
+}
+
+.cbc-sel-btn.is-open {
+  border-color: var(--violet);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--violet) 18%, transparent);
+}
+
+.cbc-sel-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  text-align: left;
+}
+
+/* ===== Contato – tema escuro ===== */
+:root[data-theme="dark"] .cbc-form-wrap {
+  background: var(--surface-1);
+  border-color: var(--hairline);
+  color: var(--text);
+}
+
+:root[data-theme="dark"] .cbc-title {
+  color: var(--text);
+}
+
+:root[data-theme="dark"] .cbc-field label {
+  color: var(--text);
+}
+
+:root[data-theme="dark"] .cbc-hint {
+  color: color-mix(in srgb, var(--text) 60%, transparent);
+}
+
+:root[data-theme="dark"] legend {
+  color: var(--text);
+}
+
+:root[data-theme="dark"] .cbc-sel-opt {
+  color: var(--text);
+}
+
+:root[data-theme="dark"] .cbc-radio {
+  background: var(--surface-1);
+  border-color: var(--hairline);
+}
+
+/* seta custom */
+.cbc-sel-caret {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
+  background: no-repeat center/contain url("data:image/svg+xml;utf8,\
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237c5cf6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>\
+        <polyline points='6 9 12 15 18 9'/>\
+      </svg>");
+  transition: transform .18s ease;
+}
+
+.cbc-sel-btn.is-open .cbc-sel-caret {
+  transform: rotate(180deg);
+}
+
+/* dropdown */
+.cbc-sel-list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 6px);
+  z-index: 40;
+  background: #fff;
+  border: 1px solid rgba(12, 22, 33, .12);
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(12, 22, 33, .16);
+  padding: 6px;
+  max-height: 240px;
+  overflow: auto;
+}
+
+.cbc-sel-opt {
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--ink);
+}
+
+.cbc-sel-opt.is-active {
+  background: #f1f5ff;
+}
+
+.cbc-sel-opt.is-selected {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--violet) 14%, #fff), #fff);
+  box-shadow: 0 6px 14px color-mix(in srgb, var(--violet) 75% / 18%);
+  border: 1px solid color-mix(in srgb, var(--violet) 35%, transparent);
+}
+
+/* mobile: evita estourar */
+@media (max-width: 980px) {
+  .cbc-sel-list {
+    max-height: 200px;
+  }
+}

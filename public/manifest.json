@@ -1,0 +1,17 @@
+{
+  "name": "ClimatologiaBits",
+  "short_name": "ClimatologiaBits",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "192x192"
+    },
+    {
+      "src": "favicon.svg",
+      "sizes": "512x512"
+    }
+  ],
+  "theme_color": "#17A673",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}
