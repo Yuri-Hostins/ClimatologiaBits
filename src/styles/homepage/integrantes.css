@@ -39,8 +39,8 @@
 /* ======================= Layout ======================= */
 .team-grid{
   display:grid;
-  grid-template-columns: 220px 1fr;
-  gap: 20px;
+  grid-template-columns: 1fr;
+  gap: 18px;
   align-items: center;
 }
 
@@ -54,11 +54,14 @@
 
 /* ======================= Miniaturas ======================= */
 .team-thumbs{
-  display:grid;
-  gap: 12px;
-  position: sticky;
-  top: 90px;      /* cola no topo em desktop */
-  align-self: start;
+  position: static;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 96px;       
+  justify-content: center;
+  gap: 14px;
+  padding-bottom: 8px;
+  overflow-x: visible;             
 }
 
 .team-thumb{
@@ -130,8 +133,9 @@
   border-radius: 18px;
   box-shadow: 0 22px 60px rgba(12,22,33,.14);
   padding: 20px;
-  margin-top: 6px; /* leve respiro do topo */
+  margin-top: 8px;
 }
+
 :root[data-theme="dark"] .team-main{
   background: color-mix(in srgb, #0b0e15 88%, var(--cb-bg-solid) 12%);
   border-color: color-mix(in srgb, #fff 10%, transparent);

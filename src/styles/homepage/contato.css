@@ -416,9 +416,6 @@
   color: var(--text);
 }
 
-:root[data-theme="dark"] .cbc-sel-opt {
-  color: var(--text);
-}
 
 :root[data-theme="dark"] .cbc-radio {
   background: var(--surface-1);

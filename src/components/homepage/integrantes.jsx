@@ -90,9 +90,6 @@ const Icon = {
   ),
 };
 
-/**
- * Componente principal
- */
 export default function Integrantes({ items = DEFAULT_MEMBERS }) {
   const [active, setActive] = useState(0);
 

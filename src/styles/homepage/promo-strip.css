@@ -104,7 +104,7 @@
     font-size: 12px;
     letter-spacing: .08em;
     text-transform: uppercase;
-    color: #2c3441;
+    color: var(--promoEyeBrow);
     background: rgba(83, 105, 119, .12);
     margin-bottom: 10px;
 }

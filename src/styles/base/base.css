@@ -74,6 +74,8 @@
   --muted: var(--page-muted);
   --color-link: var(--link);
   --sobre-bg: var(--surface-2);
+
+  --promoEyeBrow: #2c3441;
 }
 
 /* ======= TEMA CLARO ======= */
@@ -106,6 +108,8 @@
   /* Contato */
   --bg:#f7f9ff;
   --card:#ffffff;
+
+  --promoEyeBrow: #2c3441;
 }
 
 /* ======= TEMA ESCURO ======= */
@@ -136,7 +140,7 @@
   --ct-ink-2: #c8ccea;
   --ct-ink-3: #a2a8c9;
 
-  
+  --promoEyeBrow: #cdd3dd;
 
   /* Contato */
   --bg:#0f0b15;

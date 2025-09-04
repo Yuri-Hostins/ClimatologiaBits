@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 // Rotas
 import Homepage from "./pages/homepage.jsx";
+import errosRoutes from "./routes/errosRoutes.js";
 
 // import funcionariosRoutes from "./routes/funcionariosRoutes";
 
@@ -45,7 +46,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
 
           {/* Rota para erros ou 404 */}
-          {/* {errosRoutes} */}
+          {errosRoutes}
         </Routes>
       </Router>
     </>
