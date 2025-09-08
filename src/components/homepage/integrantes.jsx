@@ -1,12 +1,15 @@
-import React, { useMemo, useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useLayoutEffect } from "react";
 const DEFAULT_MEMBERS = [
 
   {
     id: "cleber",
     nome: "Cleverson Barbosa Matias",
     funcao: "Conteúdo",
-    foto: `${process.env.PUBLIC_URL}/assets/img/team/cleber.jpg`,
-    thumb: `${process.env.PUBLIC_URL}/assets/img/team/cleber.jpg`,
+    foto: `${process.env.PUBLIC_URL}/assets/img/homepage/team/cleber.jpg`,
+    thumb: `${process.env.PUBLIC_URL}/assets/img/homepage/team/cleber.jpg`,
+
+    fotoAI: `${process.env.PUBLIC_URL}/assets/img/homepage/team/cleber_ai.jpg`,
+    thumbAI: `${process.env.PUBLIC_URL}/assets/img/homepage/team/cleber_ai.jpg`,
     bio: "Produção de textos, revisão e apoio na elaboração das seções didáticas de climatologia.",
     links: {
       instagram: "https://instagram.com/cleber.mnz",
@@ -17,8 +20,11 @@ const DEFAULT_MEMBERS = [
     id: "joao",
     nome: "João Gabriel Lopes tenfen",
     funcao: "Dados / Pesquisa",
-    foto: `${process.env.PUBLIC_URL}/assets/img/team/joao.jpg`,
-    thumb: `${process.env.PUBLIC_URL}/assets/img/team/joao.jpg`,
+    foto: `${process.env.PUBLIC_URL}/assets/img/homepage/team/joao.jpg`,
+    thumb: `${process.env.PUBLIC_URL}/assets/img/homepage/team/joao.jpg`,
+
+    fotoAI: `${process.env.PUBLIC_URL}/assets/img/homepage/team/joao_ai.jpg`,
+    thumbAI: `${process.env.PUBLIC_URL}/assets/img/homepage/team/joao_ai.jpg`,
     bio: "Pesquisa de fontes, coleta de dados e curadoria de materiais para visualizações e mapas.",
     links: {
       instagram: "https://instagram.com/gab_tenf",
@@ -30,8 +36,11 @@ const DEFAULT_MEMBERS = [
     id: "lucas",
     nome: "Lucas Roberto Tay",
     funcao: "Dados / Pesquisa",
-    foto: `${process.env.PUBLIC_URL}/assets/img/team/lucas.jpg`,
-    thumb: `${process.env.PUBLIC_URL}/assets/img/team/lucas.jpg`, //lucas_thumb.jpg
+    foto: `${process.env.PUBLIC_URL}/assets/img/homepage/team/lucas.jpg`,
+    thumb: `${process.env.PUBLIC_URL}/assets/img/homepage/team/lucas.jpg`,
+
+    fotoAI: `${process.env.PUBLIC_URL}/assets/img/homepage/team/lucas_ai.jpg`,
+    thumbAI: `${process.env.PUBLIC_URL}/assets/img/homepage/team/lucas_ai.jpg`,
     bio: "Pesquisa de fontes, coleta de dados e curadoria de materiais para visualizações e mapas.",
     links: {
       instagram: "https://instagram.com/llucas_rt",
@@ -43,8 +52,11 @@ const DEFAULT_MEMBERS = [
     id: "yuri",
     nome: "Yuri Hostins Raimundo",
     funcao: "Dev / UI",
-    foto: `${process.env.PUBLIC_URL}/assets/img/team/yuri.jpg`,
-    thumb: `${process.env.PUBLIC_URL}/assets/img/team/yuri.jpg`,
+    foto: `${process.env.PUBLIC_URL}/assets/img/homepage/team/yuri.jpg`,
+    thumb: `${process.env.PUBLIC_URL}/assets/img/homepage/team/yuri.jpg`,
+
+    fotoAI: `${process.env.PUBLIC_URL}/assets/img/homepage/team/yuri_ai.jpg`,
+    thumbAI: `${process.env.PUBLIC_URL}/assets/img/homepage/team/yuri_ai.jpg`,
     bio: "Responsável pela implementação e design do ClimatologiaBits, com foco em visualização e UX.",
     links: {
       instagram: "https://instagram.com/yurihr.___",
@@ -54,9 +66,6 @@ const DEFAULT_MEMBERS = [
   },
 ];
 
-/**
- * Ícones simples em SVG (mantém seu bundle leve e coerente com o resto do site).
- */
 const Icon = {
   ig: () => (
     <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
@@ -132,6 +141,92 @@ export default function Integrantes({ items = DEFAULT_MEMBERS }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [go]);
 
+  // preferência Real/IA
+  const PHOTO_MODE_KEY = "cb:teamPhotoMode";
+  const [photoMode, setPhotoMode] = useState("");
+
+  // hidrata ANTES do primeiro paint
+  useLayoutEffect(() => {
+    try {
+      const saved = localStorage.getItem(PHOTO_MODE_KEY);
+      if (saved === "real" || saved === "ai") setPhotoMode(saved);
+    } catch { }
+  }, []);
+
+  // persiste sempre que mudar
+  useEffect(() => {
+    try {
+      localStorage.setItem(PHOTO_MODE_KEY, photoMode);
+    } catch { }
+  }, [photoMode]);
+
+  // utilitário para escolher a imagem certa
+  const getImg = (m, kind /* 'photo' | 'thumb' */) => {
+    if (photoMode === "ai") {
+      if (kind === "photo") return m.fotoAI || m.foto;
+      return m.thumbAI || m.thumb || m.foto;
+    }
+    // modo real
+    if (kind === "photo") return m.foto;
+    return m.thumb || m.foto;
+  };
+
+
+  // foco vertical por integrante e por modo (real|ai), 0–100 (%)
+  const FOCUS_KEY = "cb:teamPhotoFocusV2";
+  const [focusMap, setFocusMap] = useState({});
+
+  // hidrata ANTES do primeiro paint
+  useLayoutEffect(() => {
+    try {
+      const raw = localStorage.getItem(FOCUS_KEY);
+      if (raw) setFocusMap(JSON.parse(raw));
+    } catch { }
+  }, []);
+
+  // persiste (ou remove) sempre que mudar
+  useEffect(() => {
+    try {
+      if (!focusMap || Object.keys(focusMap).length === 0) {
+        localStorage.removeItem(FOCUS_KEY);
+      } else {
+        localStorage.setItem(FOCUS_KEY, JSON.stringify(focusMap));
+      }
+    } catch { }
+  }, [focusMap]);
+
+  // normaliza o modo
+  const normalizeMode = (m) => (m === "ai" ? "ai" : "real");
+
+  // lê foco (default 50)
+  const getFocus = (id, mode) => {
+    const m = normalizeMode(mode);
+    return Math.max(0, Math.min(100, focusMap?.[id]?.[m] ?? 50));
+  };
+
+  // grava foco (remove quando == 50)
+  const setFocus = (id, mode, val) => {
+    const m = normalizeMode(mode);
+    const clamped = Math.max(0, Math.min(100, val));
+    setFocusMap((prev) => {
+      const next = { ...prev, [id]: { ...(prev[id] || {}) } };
+      if (clamped === 50) {
+        delete next[id][m];
+        if (Object.keys(next[id]).length === 0) delete next[id];
+      } else {
+        next[id][m] = clamped;
+      }
+      return next;
+    });
+  };
+
+  const nudgeFocus = (delta) =>
+    setFocus(current.id, photoMode, getFocus(current.id, photoMode) + delta);
+
+  const resetFocus = () => setFocus(current.id, photoMode, 50);
+
+
+
   return (
     <section id="integrantes" className="gb-section team-section" aria-label="Integrantes do ClimatologiaBits">
       <div className="gb-shell">
@@ -144,8 +239,29 @@ export default function Integrantes({ items = DEFAULT_MEMBERS }) {
           </p>
         </header>
 
+        <div className="team-mode" role="tablist" aria-label="Modo da foto">
+          <button
+            type="button"
+            className={`mode-btn ${photoMode === "real" ? "is-active" : ""}`}
+            aria-pressed={photoMode === "real"}
+            onClick={() => setPhotoMode("real")}
+            title="Mostrar fotos reais"
+          >
+            Real
+          </button>
+          <button
+            type="button"
+            className={`mode-btn ${photoMode === "ai" ? "is-active" : ""}`}
+            aria-pressed={photoMode === "ai"}
+            onClick={() => setPhotoMode("ai")}
+            title="Mostrar versões com IA"
+          >
+            IA
+          </button>
+        </div>
+
+
         <div className="team-grid">
-          {/* Miniaturas (sidebar em desktop / carrossel em mobile) */}
           <aside className="team-thumbs" role="tablist" aria-label="Escolha um integrante">
             {items.map((m, idx) => {
               const selected = idx === active;
@@ -163,11 +279,14 @@ export default function Integrantes({ items = DEFAULT_MEMBERS }) {
                 >
                   <span className="thumb-ring" />
                   <img
-                    src={m.thumb || m.foto}
+                    src={getImg(m, "thumb")}
                     alt={m.nome}
                     loading="lazy"
                     className="thumb-img"
+                    style={{ objectPosition: `50% ${getFocus(m.id, photoMode)}%` }}
                   />
+
+
                 </button>
               );
             })}
@@ -177,11 +296,21 @@ export default function Integrantes({ items = DEFAULT_MEMBERS }) {
           <div className="team-main" role="tabpanel" id={`team-panel-${current.id}`} aria-live="polite">
             <figure className="team-photo-wrap">
               <img
+                key={`${current.id}-${photoMode}`}
                 className="team-photo"
-                src={current.foto}
+                src={getImg(current, "photo")}
                 alt={`Foto de ${current.nome}`}
                 loading="lazy"
+                style={{ objectPosition: `50% ${getFocus(current.id, photoMode)}%` }}
               />
+
+              <div className="photo-tune" role="group" aria-label="Ajuste do enquadramento">
+                <button className="tune-btn" onClick={() => nudgeFocus(-5)} title="Mover para cima">↑</button>
+                <span className="tune-readout">{getFocus(current.id, photoMode)}%</span>
+                <button className="tune-btn" onClick={() => nudgeFocus(5)} title="Mover para baixo">↓</button>
+                <button className="tune-btn" onClick={resetFocus} title="Centralizar">⤾</button>
+              </div>
+
             </figure>
 
             <div className="team-info">

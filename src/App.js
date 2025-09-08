@@ -2,11 +2,18 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 
-// Rotas
-import Homepage from "./pages/homepage.jsx";
-import errosRoutes from "./routes/errosRoutes.js";
+// Homepage
+import Homepage from "./pages/homepage";
 
-// import funcionariosRoutes from "./routes/funcionariosRoutes";
+// Rota Obrigado
+import Obrigado from "./pages/obrigado";
+
+// Error 404
+import NotFound from "./pages/NotFound";
+
+// Rotas das paginas de conteudos
+import SubtropicalPage from "./pages/conteudos/Subtropical";
+
 
 function App() {
 
@@ -45,8 +52,12 @@ function App() {
           {/* Rota pública de login */}
           <Route path="/" element={<Homepage />} />
 
+          <Route path="/conteudos/subtropical" element={<SubtropicalPage />} />
+          <Route path="/obrigado" element={<Obrigado />} />
+
           {/* Rota para erros ou 404 */}
-          {errosRoutes}
+          <Route path="*" element={ <NotFound /> } />
+
         </Routes>
       </Router>
     </>

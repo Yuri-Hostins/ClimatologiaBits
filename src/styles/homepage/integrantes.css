@@ -290,3 +290,84 @@
   .team-link,
   .team-nav{ transition: none !important; }
 }
+
+/* ===== Toggle Real / IA ===== */
+.team-mode{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  margin: 8px 0 10px;
+}
+
+.mode-btn{
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  background: color-mix(in srgb, #fff 80%, transparent);
+  color: var(--ink);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: .01em;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.mode-btn:hover{ transform: translateY(-1px); }
+.mode-btn.is-active{
+  background: linear-gradient(180deg, var(--cb-accent), color-mix(in srgb, var(--cb-accent) 70%, #000));
+  color: #fff;
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--cb-accent) 50% / 38%);
+}
+.mode-btn:focus-visible{
+  outline: 2px solid var(--cb-accent-2);
+  outline-offset: 2px;
+}
+
+/* Fade suave ao trocar fotoMode */
+.team-photo{
+  opacity: 1;
+  transition: opacity .22s ease;
+}
+.team-photo[loading="lazy"]{
+  /* alguns browsers aplicam lazy-state; garantimos transição suave também */
+  opacity: 1;
+}
+
+
+/* ===== Afinador de enquadramento (foto grande) ===== */
+.team-photo-wrap{ position: relative; } /* já existe; só garante o contexto */
+
+.photo-tune{
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--cb-bg-solid) 70%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  box-shadow: 0 10px 28px rgba(12,22,33,.22);
+  backdrop-filter: blur(6px);
+}
+
+.tune-btn{
+  width: 28px; height: 28px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  background: color-mix(in srgb, #fff 80%, transparent);
+  color: var(--ink);
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+}
+.tune-btn:hover{ transform: translateY(-1px); }
+.tune-btn:focus-visible{ outline: 2px solid var(--cb-accent-2); outline-offset: 2px; }
+
+.tune-readout{
+  font-size: 12px;
+  opacity: .75;
+  user-select: none;
+}
+
+/* posição padrão; o JS sobrescreve inline conforme usuário */
+.team-photo{ object-position: 50% 50%; }

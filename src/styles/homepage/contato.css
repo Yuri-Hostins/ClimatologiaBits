@@ -477,3 +477,30 @@
     max-height: 200px;
   }
 }
+
+/* ===== Melhor “respiro” no mobile ===== */
+@media (max-width: 980px) {
+  /* margem interna para o grid quando vira 1 coluna */
+  .cbc-shell {
+    padding-inline: clamp(16px, 6vw, 28px);
+  }
+
+  /* bloco esquerdo e cartão do formulário com mais folga interna */
+  .cbc-left-inner,
+  .cbc-form-wrap {
+    padding: clamp(14px, 4vw, 20px);
+  }
+}
+
+@media (max-width: 680px) {
+  /* formulário em 1 coluna para não ficar espremido */
+  .cbc-form {
+    grid-template-columns: 1fr;
+  }
+
+  /* dropdown do select com safe-area lateral */
+  .cbc-sel-list {
+    left: 6px;
+    right: 6px;
+  }
+}

@@ -1,0 +1,538 @@
+/* ===== ClimatologiaBits – Conteúdos (light/dark) ===== */
+
+.ct-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px
+}
+
+/* HERO / BANNER */
+.ct-hero {
+  position: relative;
+  padding: 64px 0 28px;
+  background:
+    radial-gradient(1100px 420px at 60% -220px, color-mix(in srgb, var(--cb-accent) 7%, transparent) 0%, transparent 70%) no-repeat,
+    linear-gradient(180deg, color-mix(in srgb, var(--cb-accent) 5%, #f6fbff) 0%, color-mix(in srgb, var(--cb-accent) 3%, #eef4f8) 100%);
+}
+
+:root[data-theme="dark"] .ct-hero {
+  background:
+    radial-gradient(1100px 420px at 60% -260px, color-mix(in srgb, var(--cb-accent) 16%, transparent) 0%, transparent 70%) no-repeat,
+    linear-gradient(180deg, #0f0f18 0%, #0b0e15 100%);
+}
+
+.ct-hero-inner {
+  display: grid;
+  gap: 18px;
+  align-items: start
+}
+
+.ct-eyebrow {
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--cb-accent)
+}
+
+.ct-title {
+  margin: 0;
+  font-weight: 900;
+  letter-spacing: -.02em;
+  font-size: clamp(28px, 4.2vw, 40px);
+  color: var(--ink)
+}
+
+:root[data-theme="dark"] .ct-title {
+  color: #fff
+}
+
+.ct-lead {
+  color: var(--ink-2);
+  max-width: 65ch
+}
+
+:root[data-theme="dark"] .ct-lead {
+  color: color-mix(in srgb, #fff 82%, transparent)
+}
+
+.ct-topics {
+  margin: 6px 0 0;
+  color: var(--ink-2)
+}
+
+:root[data-theme="dark"] .ct-topics {
+  color: color-mix(in srgb, #fff 76%, transparent)
+}
+
+/* CARD DA SEÇÃO (texto + imagem) */
+.ct-section {
+  margin: 22px 0;
+  background: var(--card);
+  border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+  border-radius: 18px;
+  box-shadow: 0 20px 56px rgba(12, 22, 33, .14);
+  overflow: hidden;
+}
+
+:root[data-theme="dark"] .ct-section {
+  background: color-mix(in srgb, #0b0e15 88%, var(--cb-bg-solid) 12%);
+  border-color: color-mix(in srgb, #fff 10%, transparent);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .55);
+}
+
+.ct-sec-inner {
+  display: grid;
+  grid-template-columns: 1.2fr .9fr;
+  gap: 16px;
+  align-items: start;
+  padding: 18px
+}
+
+@media (max-width:920px) {
+  .ct-sec-inner {
+    grid-template-columns: 1fr
+  }
+}
+
+.ct-sec-title {
+  margin: 4px 0 6px;
+  font-size: clamp(18px, 3.6vw, 24px);
+  font-weight: 900;
+  letter-spacing: -.01em;
+  color: var(--ink)
+}
+
+:root[data-theme="dark"] .ct-sec-title {
+  color: #fff
+}
+
+.ct-sec-text {
+  color: var(--ink-2)
+}
+
+:root[data-theme="dark"] .ct-sec-text {
+  color: color-mix(in srgb, #fff 86%, transparent)
+}
+
+.ct-sec-list {
+  margin: 8px 0 0 18px;
+  color: var(--ink-2)
+}
+
+.ct-sec-list li {
+  margin: 4px 0
+}
+
+:root[data-theme="dark"] .ct-sec-list {
+  color: color-mix(in srgb, #fff 80%, transparent)
+}
+
+.ct-figure {
+  overflow: hidden;
+  border-radius: 14px;
+  box-shadow: 0 16px 44px rgba(12, 22, 33, .16)
+}
+
+:root[data-theme="dark"] .ct-figure {
+  box-shadow: 0 20px 56px rgba(0, 0, 0, .5)
+}
+
+.ct-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover
+}
+
+.ct-cap {
+  color: var(--ink-2);
+  font-size: 12px;
+  margin-top: 6px
+}
+
+:root[data-theme="dark"] .ct-cap {
+  color: color-mix(in srgb, #fff 70%, transparent)
+}
+
+/* VÍDEO */
+.ct-video {
+  margin: 26px 0 32px;
+  background: var(--card);
+  border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+  border-radius: 18px;
+  box-shadow: 0 20px 56px rgba(12, 22, 33, .14);
+  padding: 16px;
+}
+
+:root[data-theme="dark"] .ct-video {
+  background: color-mix(in srgb, #0b0e15 88%, var(--cb-bg-solid) 12%);
+  border-color: color-mix(in srgb, #fff 10%, transparent);
+}
+
+.ct-video h3 {
+  margin: 0 0 10px;
+  font-weight: 900;
+  letter-spacing: -.01em
+}
+
+.ct-video iframe {
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: 0;
+  border-radius: 12px
+}
+
+/* CTA (botões opcionais) */
+.ct-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 10px 0 0
+}
+
+.ct-btn {
+  border: 0;
+  border-radius: 12px;
+  padding: 12px 18px;
+  cursor: pointer;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(180deg, var(--cb-accent), color-mix(in srgb, var(--cb-accent) 70%, #000));
+  box-shadow: 0 16px 36px color-mix(in srgb, var(--cb-accent) 50% / 40%);
+}
+
+.ct-btn:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px)
+}
+
+
+/* ===== Toolbar do banner (modo e vídeo) ===== */
+.ct-toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+/* Botões segmentados: Texto | Slides */
+.ct-seg {
+  display: inline-flex;
+  background: var(--card);
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  padding: 4px;
+  box-shadow: 0 2px 12px rgba(12, 22, 33, .06);
+}
+
+.ct-toggle {
+  border: 0;
+  background: transparent;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: .01em;
+  color: var(--ct-ink-3);
+  cursor: pointer;
+}
+
+.ct-toggle.is-active {
+  color: #fff;
+  background: linear-gradient(180deg, var(--cb-accent), var(--cb-accent-2));
+  box-shadow: 0 10px 22px color-mix(in srgb, var(--cb-accent) 50% / 35%);
+}
+
+/* Switch de vídeo */
+.ct-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  color: var(--ink-2);
+  user-select: none;
+}
+
+.ct-switch input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.ct-switch-visual {
+  width: 38px;
+  height: 22px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ink) 8%, #fff);
+  position: relative;
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--ink) 16%, transparent);
+  transition: background .2s ease, box-shadow .2s ease;
+}
+
+.ct-switch-visual::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  background: #fff;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, .25);
+  transition: transform .2s ease;
+}
+
+.ct-switch input:checked+.ct-switch-visual {
+  background: var(--cb-accent);
+  box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--cb-accent) 35%, transparent);
+}
+
+.ct-switch input:checked+.ct-switch-visual::after {
+  transform: translateX(16px);
+}
+
+.ct-switch-label {
+  font-size: 14px;
+}
+
+/* ===== Slides (sd-*) ===== */
+.sd {
+  margin: 16px auto 36px;
+  max-width: 1000px;
+  color: var(--ink);
+}
+
+:root[data-theme="dark"] .sd {
+  color: #fff;
+}
+
+.sd-frame {
+  background: var(--card);
+  border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+  border-radius: 16px;
+  box-shadow: 0 22px 60px rgba(12, 22, 33, .14);
+  overflow: hidden;
+}
+
+:root[data-theme="dark"] .sd-frame {
+  background: color-mix(in srgb, #0b0e15 88%, var(--cb-bg-solid) 12%);
+  border-color: color-mix(in srgb, #fff 10%, transparent);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, .45);
+}
+
+.sd-head {
+  padding: 18px 18px 0;
+}
+
+.sd-title {
+  margin: 0 0 4px;
+  font-weight: 900;
+  letter-spacing: -.02em;
+  font-size: clamp(18px, 3.2vw, 28px);
+}
+
+.sd-sub {
+  margin: 0 0 10px;
+  color: var(--ink-2);
+}
+
+:root[data-theme="dark"] .sd-sub {
+  color: color-mix(in srgb, #fff 75%, transparent);
+}
+
+.sd-body {
+  padding: 0 18px 18px;
+}
+
+.sd-media {
+  margin: 0 0 12px;
+}
+
+.sd-media img,
+.sd-media video {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+}
+
+.sd-iframe {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.sd-iframe iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.sd-cap {
+  font-size: 12px;
+  color: var(--ink-2);
+  margin-top: 6px;
+}
+
+:root[data-theme="dark"] .sd-cap {
+  color: color-mix(in srgb, #fff 75%, transparent);
+}
+
+.sd-content p {
+  margin: 0 0 8px;
+}
+
+.sd-controls {
+  margin: 12px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.sd-nav {
+  border: 0;
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 800;
+  letter-spacing: .02em;
+  color: #fff;
+  background: linear-gradient(180deg, var(--violet), var(--violet-2));
+  box-shadow: 0 14px 36px color-mix(in srgb, var(--violet) 60% / 35%);
+}
+
+.sd-nav:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.sd-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.sd-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 0;
+  background: color-mix(in srgb, var(--ink) 20%, transparent);
+  cursor: pointer;
+}
+
+.sd-dot.is-active {
+  background: var(--violet);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--violet) 22%, transparent);
+}
+
+.sd-hint {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+:root[data-theme="dark"] .sd-hint {
+  color: color-mix(in srgb, #fff 75%, transparent);
+}
+
+.sd-empty {
+  max-width: 1000px;
+  margin: 24px auto;
+  padding: 18px;
+  background: var(--card);
+  border-radius: 12px;
+  border: 1px solid var(--hairline);
+}
+
+/* === Split layout (texto | mídia) === */
+.sd-frame.is-split .sd-body {
+  padding: 12px 18px 18px;
+}
+
+.sd-split {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  /* texto um pouquinho maior */
+  gap: 18px;
+  align-items: center;
+}
+
+/* inverter (imagem à esquerda, texto à direita) */
+.sd-split.is-flip {
+  grid-template-columns: 1fr 1.1fr;
+}
+
+.sd-split.is-flip .sd-content {
+  order: 2;
+}
+
+.sd-split.is-flip .sd-media {
+  order: 1;
+}
+
+/* responsivo: empilha no mobile */
+@media (max-width: 860px) {
+  .sd-split {
+    grid-template-columns: 1fr;
+  }
+
+  .sd-split.is-flip .sd-content,
+  .sd-split.is-flip .sd-media {
+    order: initial;
+  }
+}
+
+/* === Animações de entrada (leve, “cara de Canva”) === */
+@keyframes sdFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes sdPop {
+  from {
+    opacity: 0;
+    transform: scale(.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.sd-appear {
+  opacity: 0;
+  animation: sdFadeUp .40s ease forwards;
+}
+
+.sd-media.sd-appear {
+  animation-name: sdPop;
+}
+
+/* deixa o texto mais legível em split */
+.sd-content p {
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+
+.link-slides{
+  color: var(--ct-ink);
+  text-decoration: none;
+}
+
+.link-slides:hover{
+  text-decoration: underline;
+}

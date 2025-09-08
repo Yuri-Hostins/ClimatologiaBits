@@ -82,6 +82,8 @@
 :root[data-theme="light"]{
   color-scheme: light;
 
+  --ink: #0f1221;
+
   --page-bg: #ffffff;
   --surface-1: #ffffff;
   --surface-2: #f6f4ff;
@@ -145,7 +147,8 @@
   /* Contato */
   --bg:#0f0b15;
   --card:#1a1429;
-  
+
+  --ink: #828dc0;
 
 }
 

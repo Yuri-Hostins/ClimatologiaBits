@@ -1,72 +1,75 @@
 import React, { useEffect, useRef, useState } from "react";
 
-// Dados de exemplo (troque por seus itens)
+const PUBLIC = process.env.PUBLIC_URL || "";
+const img = (p) => `${PUBLIC}/assets/img/${p}`;
+
 const DEFAULT_ITEMS = [
   {
     id: "Equatorial",
     titulo: "Equatorial",
     descricao:
-      "Gel viscoso onde acontecem várias reações celulares. Veja mais abaixo.",
-    img: `${process.env.PUBLIC_URL || ""}/assets/conteudos/citoplasma.jpg`,
-    href: "/Equatorial",
+      "Quente e úmido o ano todo, chuvas abundantes diárias e floresta densa.",
+    img: img("homepage/conteudos/capaEquatorial.png"),
+    href: "/conteudos/equatorial",
   },
   {
     id: "Tropical",
     titulo: "Tropical",
     descricao:
-      "Estruturas que realizam funções específicas na célula. Veja mais abaixo.",
-    img: `${process.env.PUBLIC_URL || ""}/assets/conteudos/Tropical.jpg`,
-    href: "/Tropical",
+      "Altas temperaturas com estação chuvosa e estação seca; no Brasil, verão mais chuvoso.",
+    img: img("homepage/conteudos/capaTropical.png"),
+    href: "/conteudos/tropical",
   },
   {
     id: "Mediterrâneo",
     titulo: "Mediterrâneo",
     descricao:
-      "Pequenas fábricas de proteínas da célula. Veja mais abaixo.",
-    img: `${process.env.PUBLIC_URL || ""}/assets/conteudos/Mediterrâneo.jpg`,
-    href: "/Mediterrâneo",
+      "Verões quentes e secos, invernos amenos e chuvosos; típico do sul da Europa.",
+    img: img("homepage/conteudos/capaMediterraneo.png"),
+    href: "/conteudos/mediterraneo",
   },
   {
     id: "Subtropical",
     titulo: "Subtropical",
     descricao:
-      "Responsáveis pela digestão intracelular. Veja mais abaixo.",
-    img: `${process.env.PUBLIC_URL || ""}/assets/conteudos/lisossomos.jpg`,
-    href: "/Subtropical",
+      "Verões quentes e invernos frios; chuvas bem distribuídas. Comuns frentes frias no Sul do Brasil.",
+    img: img("/homepage/conteudos/CapaClimaSubtropical.png"),
+    href: "/conteudos/subtropical",
   },
   {
     id: "Polar e Subpolar",
     titulo: "Polar e Subpolar",
     descricao:
-      "Importantes na detoxificação celular. Veja mais abaixo.",
-    img: `${process.env.PUBLIC_URL || ""}/assets/conteudos/Polar e Subpolar.jpg`,
-    href: "/Polar e Subpolar",
+      "Muito frio, invernos longos; baixa evaporação e precipitação em forma de neve.",
+    img: img("homepage/conteudos/capaPolarSubpolar.png"),
+    href: "/conteudos/polar-subpolar",
   },
   {
     id: "Frio de Montanha",
     titulo: "Frio de Montanha",
     descricao:
-      "Importantes na detoxificação celular. Veja mais abaixo.",
-    img: `${process.env.PUBLIC_URL || ""}/assets/conteudos/Frio de Montanha.jpg`,
-    href: "/Frio de Montanha",
+      "Temperatura diminui com a altitude; noites frias e chance de neve em áreas elevadas.",
+    img: img("homepage/conteudos/capaFrioMontanha.png"),
+    href: "/conteudos/frio-de-montanha",
   },
   {
     id: "Brasil",
     titulo: "Brasil",
     descricao:
-      "Importantes na detoxificação celular. Veja mais abaixo.",
-    img: `${process.env.PUBLIC_URL || ""}/assets/conteudos/Brasil.jpg`,
-    href: "/Brasil",
+      "Panorama dos climas do Brasil e curiosidades regionais.",
+    img: img("homepage/conteudos/capaBrasil.png"),
+    href: "/conteudos/brasil",
   },
   {
     id: "Clima de Santa Catarina",
     titulo: "Clima de Santa Catarina",
     descricao:
-      "Importantes na detoxificação celular. Veja mais abaixo.",
-    img: `${process.env.PUBLIC_URL || ""}/assets/conteudos/Clima de Santa Catarina.jpg`,
-    href: "/Clima de Santa Catarina",
+      "Subtropical com influência de frentes frias e do relevo; foco em Blumenau/Vale do Itajaí.",
+    img: img("homepage/conteudos/capaSantaCatarina.jpg"),
+    href: "/conteudos/santa-catarina",
   },
 ];
+
 
 export default function Conteudos({
   title = "Conteúdos",
@@ -118,13 +121,17 @@ export default function Conteudos({
 
   // Fallback de imagem simples
   const onImgError = (ev, title) => {
-    ev.currentTarget.src =
-      `data:image/svg+xml;utf8,` +
-      `<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450'>` +
-      `<rect width='100%' height='100%' rx='20' ry='20' fill='%23e9edf6'/>` +
-      `<text x='50%' y='52%' text-anchor='middle' font-family='Inter,Arial' font-size='24' fill='%23899'>${title}</text>` +
-      `</svg>`;
+    const el = ev.currentTarget;
+    if (el.dataset.fallback) return;
+    el.dataset.fallback = "1";
+    el.src =
+      "data:image/svg+xml;utf8," +
+      `<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450'>
+      <rect width='100%' height='100%' rx='20' ry='20' fill='%23e9edf6'/>
+      <text x='50%' y='52%' text-anchor='middle' font-family='Inter,Arial' font-size='24' fill='%23899'>${title}</text>
+     </svg>`;
   };
+
 
   return (
     <section id="conteudos" className="ct-section" aria-label="Conteúdos">

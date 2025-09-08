@@ -1,9 +1,7 @@
 import React from "react";
 
-const sobreImg = `${process.env.PUBLIC_URL}/assets/img/sobre/background.png`; // troque se quiser
-
+const sobreImg = `${process.env.PUBLIC_URL}/assets/img/homepage/sobre/background.png`;
 export default function SobreSection() {
-  // rola até a seção (sem # na URL), funciona estando na home ou em outra rota
   const goTo = (id) => {
     const el = document.getElementById(id);
     if (el) {
@@ -81,8 +79,8 @@ export default function SobreSection() {
             <div className="sobre-social">
               <a href="https://github.com/Yuri-Hostins" aria-label="GitHub" title="GitHub" className="social">
                 {/* GitHub */}
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                  <path d="M14 9h3V6h-3a3 3 0 0 0-3 3v3H8v3h3v6h3v-6h3l1-3h-4V9a1 1 0 0 1 1-1Z" fill="currentColor" />
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" >
+                  <path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.38-1.35-1.75-1.35-1.75-1.1-.75.09-.74.09-.74 1.21.09 1.85 1.24 1.85 1.24 1.08 1.86 2.83 1.32 3.52 1.01.11-.78.42-1.32.76-1.62-2.66-.3-5.46-1.33-5.46-5.9 0-1.31.47-2.39 1.24-3.23-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.92 1.24 3.23 0 4.59-2.8 5.59-5.47 5.89.43.37.81 1.1.81 2.22v3.29c0 .32.21.7.83.58A12 12 0 0 0 12 .5Z" />
                 </svg>
               </a>
               <a href="https://www.instagram.com/yurihr.___/" aria-label="Instagram" target="_blank" title="Instagram" className="social">
