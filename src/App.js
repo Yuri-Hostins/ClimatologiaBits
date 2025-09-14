@@ -14,6 +14,9 @@ import NotFound from "./pages/NotFound";
 // Rotas das paginas de conteudos
 import SubtropicalPage from "./pages/conteudos/Subtropical";
 
+// Rota para games
+import QuizPage from "./pages/games/quizgame";
+
 
 function App() {
 
@@ -53,6 +56,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
 
           <Route path="/conteudos/subtropical" element={<SubtropicalPage />} />
+          <Route path="/quiz" element={<QuizPage />} />
           <Route path="/obrigado" element={<Obrigado />} />
 
           {/* Rota para erros ou 404 */}
