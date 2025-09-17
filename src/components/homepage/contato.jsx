@@ -109,6 +109,25 @@ export default function Contato() {
   // imagem do bloco esquerdo (troque se quiser)
   const banner = `${process.env.PUBLIC_URL || ""}/assets/img/contact-banner.jpg`;
 
+  function encode(data) {
+    return new URLSearchParams(data).toString();
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode(Object.fromEntries(data)), // Netlify Forms registra normal
+    })
+      .then(() => window.location.assign("/obrigado"))
+      .catch((err) => alert("Falha no envio: " + err));
+  }
+
+
   return (
     <section id="contato" className="cbc-section" aria-labelledby="cbc-title">
       <div className="cbc-shell">
@@ -122,18 +141,18 @@ export default function Contato() {
 
             <div className="cbc-card">
               <a className="cbc-row" href="tel:+55479758-8370">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.3 11.3 0 0 0 3.2.5 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 8a1 1 0 0 1 1-1h3.6a1 1 0 0 1 1 1 11.3 11.3 0 0 0 .5 3.2 1 1 0 0 1-.25 1z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15 15 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.3 11.3 0 0 0 3.2.5 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 8a1 1 0 0 1 1-1h3.6a1 1 0 0 1 1 1 11.3 11.3 0 0 0 .5 3.2 1 1 0 0 1-.25 1z" /></svg>
                 <span>+55 (47) 9758-8370</span>
               </a>
 
               <a className="cbc-row" href="mailto:yurivn21@Outlook.com">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5Z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5Z" /></svg>
                 <span>yurivn21@outlook.com</span>
               </a>
 
               <a className="cbc-row" target="_blank" rel="noreferrer"
-                 href="https://www.google.com/maps/place/Blumenau,+SC/@-26.8564099,-49.0991038,11z/data=!3m1!4b1!4m6!3m5!1s0x94df1e408b5c3095:0xacfb8520bc1a7644!8m2!3d-26.9165792!4d-49.0717331!16zL20vMDJ5Z2h6">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 14.5 9 2.5 2.5 0 0 1 12 11.5Z"/></svg>
+                href="https://www.google.com/maps/place/Blumenau,+SC/@-26.8564099,-49.0991038,11z/data=!3m1!4b1!4m6!3m5!1s0x94df1e408b5c3095:0xacfb8520bc1a7644!8m2!3d-26.9165792!4d-49.0717331!16zL20vMDJ5Z2h6">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 14.5 9 2.5 2.5 0 0 1 12 11.5Z" /></svg>
                 <span>Brasil, SC - Blumenau</span>
               </a>
             </div>
@@ -149,11 +168,14 @@ export default function Contato() {
             method="POST"
             data-netlify="true"
             netlify-honeypot="bot-field"
-            action="/obrigado"
             className="cbc-form"
+            onSubmit={handleSubmit}
           >
+
             {/* obrigatório para Netlify */}
             <input type="hidden" name="form-name" value="contato" />
+            <input type="hidden" name="bot-field" />
+            <input type="hidden" name="redirect" value="/obrigado" />
 
             <div className="cbc-field">
               <label htmlFor="nome">Nome</label>
@@ -163,6 +185,18 @@ export default function Contato() {
             <div className="cbc-field">
               <label htmlFor="email">E-mail</label>
               <input id="email" name="email" type="email" placeholder="seu@email.com" required />
+            </div>
+
+            <div className="cbc-field">
+              <label htmlFor="telefone">Telefone</label>
+              <input
+                id="telefone"
+                name="telefone"
+                type="tel"
+                placeholder="(47) 99999-9999"
+                inputMode="tel"
+                pattern="\(?\d{2}\)?\s?\d{4,5}-?\d{4}"
+              />
             </div>
 
             {/* Select custom estilizado */}

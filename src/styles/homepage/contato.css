@@ -256,6 +256,7 @@
 
 .cbc-field input[type="text"],
 .cbc-field input[type="email"],
+.cbc-field input[type="tel"],
 .cbc-field select,
 .cbc-field textarea {
   border: 1.5px solid rgba(12, 22, 33, .12);

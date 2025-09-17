@@ -7,7 +7,11 @@ export default function RulesDialog({
   secondsPerQ = 25,
   total = 10,
   difficulty = "facil",
-  onChangeDifficulty = () => {},
+  onChangeDifficulty = () => { },
+  p1Name = "",
+  p2Name = "",
+  onChangeP1 = () => { },
+  onChangeP2 = () => { },
 }) {
   const title = mode === "sp" ? "Regras — Singleplayer" : "Regras — Multiplayer";
 
@@ -61,6 +65,45 @@ export default function RulesDialog({
         ) : (
           <p>O modo multiplayer estará disponível em breve.</p>
         )}
+
+        {mode === "mp" && (
+          <div className="mp-names" style={{ display: "grid", gap: 8, marginBottom: 12 }}>
+            <div className="field">
+              <label className="label">Nome do Jogador 1</label>
+              <input
+                className="input"
+                type="text"
+                placeholder="Jogador 1"
+                value={p1Name}
+                onChange={(e) => onChangeP1(e.target.value)}
+              />
+            </div>
+            <div className="field">
+              <label className="label">Nome do Jogador 2</label>
+              <input
+                className="input"
+                type="text"
+                placeholder="Jogador 2"
+                value={p2Name}
+                onChange={(e) => onChangeP2(e.target.value)}
+              />
+            </div>
+          </div>
+        )}
+        {/* mesmas regras do singleplayer também para MP */}
+        <ol className="rules-list">
+          <li>Você terá <b>{secondsPerQ} segundos</b> por pergunta (de acordo com a dificuldade acima).</li>
+          <li>Após confirmar a alternativa, não é possível desfazer.</li>
+          <li>Se o tempo acabar, a questão é registrada como errada.</li>
+          <li>
+            Teclado: <code>1…9</code> (alternativas), <code>V/F</code> (VF),
+            <kbd>Enter</kbd> (confirmar).
+          </li>
+          <li>No multiplayer, cada pergunta é respondida em turnos: primeiro P1, depois P2. O correto é revelado só após ambos.</li>
+        </ol>
+
+
+
       </div>
 
       <footer className="quiz-foot">

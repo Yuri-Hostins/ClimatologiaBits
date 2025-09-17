@@ -20,12 +20,12 @@ export default function ModeSelect({ onChoose }) {
           </button>
         </article>
 
-        <article className="mode-card disabled">
+        <article className="mode-card">
           <div className="mode-illu" aria-hidden="true">🧑‍🤝‍🧑</div>
           <h2>Multiplayer</h2>
-          <p>Desafie amigos em tempo real. <i>Em breve.</i></p>
-          <button className="btn" disabled>
-            Em breve
+          <p>Desafie um amigo no mesmo dispositivo <i>(turnos)</i>.</p>
+          <button className="btn primary" onClick={() => onChoose("mp")}>
+            Começar no Multiplayer
           </button>
         </article>
       </div>
